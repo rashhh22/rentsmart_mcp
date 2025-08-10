@@ -133,7 +133,7 @@ class StampDutyRequest(BaseModel):
 async def health() -> Dict[str, str]:
     return {"status": "ok"}
 
-VALID_TOKEN = os.environ.get("RENTSMART_VALID_TOKEN", "something_secret")
+
 
 @app.post("/validate")
 async def validate(request: Request):
