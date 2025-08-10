@@ -188,6 +188,38 @@ app = FastAPI()
 @app.get("/")
 def root():
     return {"status": "ok"}
+# --- add near your other imports ---
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, Response
+
+# --- CORS: allow Puch to preflight/HEAD safely ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# --- Root handlers so HEAD/GET "/" don't 404 ---
+@app.get("/", response_class=HTMLResponse)
+async def index():
+    return """
+    <h2>RentSmart MCP</h2>
+    <ul>
+      <li><a href="/health">/health</a></li>
+      <li><a href="/tools">/tools</a></li>
+    </ul>
+    """
+
+@app.head("/")
+async def head_root():
+    return Response(status_code=200)
+
+# --- Generic OPTIONS handler (preflight) ---
+@app.options("/{path:path}")
+async def options_ok(path: str):
+    return Response(status_code=204)
+  
 
 app = FastAPI(title="RentSmart MCP", version="0.1.0")
 
