@@ -133,12 +133,22 @@ class StampDutyRequest(BaseModel):
 async def health() -> Dict[str, str]:
     return {"status": "ok"}
 
+VALID_TOKEN = os.environ.get("RENTSMART_VALID_TOKEN", "something_secret")
+
 @app.post("/validate")
-async def validate(request: Request) -> Dict[str, str]:
-    auth = request.headers.get("Authorization", "")
-    token = auth.replace("Bearer ", "").strip()
+async def validate(request: Request):
+    # 1) Check for Bearer token in header
+    auth_header = request.headers.get("Authorization", "")
+    token = auth_header.replace("Bearer ", "").strip()
+
+    # 2) If not present, fallback to ?token= query param
+    if not token:
+        token = request.query_params.get("token", "")
+
+    # 3) Compare against expected token
     if token != VALID_TOKEN:
         raise HTTPException(status_code=401, detail="Unauthorized")
+
     return {"phone": "919999999999"}
 
 @app.get("/tools")
