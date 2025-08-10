@@ -4,6 +4,7 @@ starlette==0.36.3
 pydantic-core==2.18.3
 pydantic==2.7.4
 python-multipart==0.0.9
-fpdf==1.7.2
+fpdf2==2.7.9
+
 
 
