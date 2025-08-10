@@ -183,14 +183,15 @@ class StampDutyRequest(BaseModel):
 # FastAPI application
 # ---------------------------------------------------------------------------
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, Response
 app = FastAPI()
 
 @app.get("/")
 def root():
     return {"status": "ok"}
 # --- add near your other imports ---
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, Response
+
 
 # --- CORS: allow Puch to preflight/HEAD safely ---
 app.add_middleware(
