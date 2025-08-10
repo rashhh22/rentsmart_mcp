@@ -1,0 +1,18 @@
+RENTAL AGREEMENT
+
+This Agreement is made on {start_date} between:
+
+Landlord: {landlord}
+Tenant: {tenant}
+Property Address: {address}
+
+Monthly Rent: ₹{rent}
+Security Deposit: ₹{deposit}
+Duration: {duration_months} months
+
+Signed,
+Landlord: __________________
+Tenant: __________________
+
+Agreement ID: {id}
+Verification Code: {verification_code}

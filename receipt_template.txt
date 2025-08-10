@@ -1,0 +1,12 @@
+RENT RECEIPT
+
+Received from {tenant} the amount of ₹{amount} for rent of the premises at
+{address} for the month of {month}/{year}.
+
+Landlord: {landlord}
+Tenant: {tenant}
+Payment Mode: {payment_mode}
+Remarks: {remarks}
+
+Receipt ID: {id}
+Verification Code: {verification_code}
