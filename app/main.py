@@ -134,7 +134,7 @@ async def health() -> Dict[str, str]:
     return {"status": "ok"}
 
 
-
+@app.api_route("/validate", methods=["GET", "POST"])
 @app.post("/validate")
 async def validate(request: Request):
     # 1) Check for Bearer token in header
