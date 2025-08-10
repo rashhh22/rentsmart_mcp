@@ -78,6 +78,11 @@ async def head_root():
 @app.options("/{rest_of_path:path}")
 async def options_any(rest_of_path: str):
     return Response(status_code=204)
+  # Root POST — some clients (incl. Puch) hit POST / during handshake
+@app.post("/")
+async def post_root():
+    return {"status": "ok"}
+
 
 # -------------------------------------------------------------------
 # Helpers & models
